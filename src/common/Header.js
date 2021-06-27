@@ -1,13 +1,26 @@
 import React from 'react';
 import './Header.css';
-const Header = function(props){
+import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
+
+const Header = function(props) {
     return (
+        <div className='header'>
+            <span className="header-text">
+                {props.heading}
+            </span>
         
-    <div className='header'>
-        <div className="header-text">
-            {props.heading}
+            <div className={props.searchDisplay}>
+                <span className={props.noSearchBox}>{props.searchDisplay}</span></div>
+                <div className={props.iconDisplay}>
+                <div className="image">
+                    <Link to="/profile/">
+                        <img src={logo} alt="profile-icon"/>{props.logo}
+                    </Link>
+                </div>
+            </div>   
         </div>
-    </div>);
+    );
 }
 
 export default Header;

@@ -18,7 +18,7 @@ class Login extends Component {
 			usernameRequired:"dispNone",
 			loginPasswordRequired:"dispNone",
 			successful:"dispNone",
-			failure:"dispBlock",
+			failure:"dispNone",
 			username:"",
 			loginPassword:""
         }
@@ -33,8 +33,7 @@ class Login extends Component {
     }
 
 	loginClickHandler = () => {
-		this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
-		this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) : this.setState({ loginPasswordRequired: "dispNone" });
+		
         let accessToken = "8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784";
 		let that = this;
 
@@ -48,20 +47,22 @@ class Login extends Component {
 			});
 
 			//Route to home here  
-			this.props.history.push('/home/');             
+			this.props.history.push({pathname:'/home/',access:accessToken});             
 		} 
 		else {
 			sessionStorage.setItem("access-token", "null");
 			if(that.state.username==="" || that.state.loginPassword==="") {
+				this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
+					this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) : this.setState({ loginPasswordRequired: "dispNone" });
+
 				that.setState({
 					loggedIn: false,
 					failure:"dispNone"
 				});
-			} 
-			else {
+			} else {
 				that.setState({
 					loggedIn: false,
-					failure:"dispBlock"
+					failure:"dispBlock",
 				});
 			}
 		}
@@ -72,18 +73,18 @@ class Login extends Component {
 
 			<div>
 				<div className="header-container">
-					<Header heading="Image Viewer"/><br />
+					<Header heading="Image Viewer" searchDisplay="dispNone" iconDisplay="dispNone"/><br />
 				</div>
 				<div className="card-container">
 					<Card className="cardStyle">
 						<CardContent>
-							<Typography variant="headline" component="h2">
+							<Typography variant="h3">
 								LOGIN
 							</Typography>
 							<FormControl required>
 								<InputLabel htmlFor="username">Username</InputLabel>
 								<Input id="username" type="text" username={this.state.username} onChange={this.inputUsernameChangeHandler} />
-								<FormHelperText className={this.state.usernameRequired}>
+								<FormHelperText className={this.state.loginPasswordRequired}>
 									<span className="red">required</span>
 								</FormHelperText>
 							</FormControl>
