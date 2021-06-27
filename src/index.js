@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import reportWebVitals from './reportWebVitals';
+import Login from './screens/login/Login';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <span>
-      Image Viewer
+      <Login />
   </span>, 
   document.getElementById('root')
 );
+
+reportWebVitals();
