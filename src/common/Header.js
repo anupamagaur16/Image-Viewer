@@ -4,7 +4,9 @@ const Header = function(props){
     return (
         
     <div className='header'>
-        {props.heading}
+        <div className="header-text">
+            {props.heading}
+        </div>
     </div>);
 }
 

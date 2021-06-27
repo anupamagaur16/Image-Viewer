@@ -9,3 +9,14 @@
     align-self:center;
 }
 
+.dispNone {
+    display:none;
+}
+
+.dispBlock {
+    display:flex;
+}
+
+.successText {
+    display:block;
+}
